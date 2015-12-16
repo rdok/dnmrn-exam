@@ -5,7 +5,7 @@
  * @since   16/12/2015
  */
 
-namespace app\Kernel;
+namespace App\Kernel;
 
 /**
  * Class App

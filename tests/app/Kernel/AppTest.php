@@ -8,8 +8,9 @@
 namespace Tests\app\Kernel;
 
 use App\Kernel\App;
+use Tests\BaseTest;
 
-class AppTest extends \PHPUnit_Framework_TestCase
+class AppTest extends BaseTest
 {
 
 	protected $serverName;
@@ -43,21 +44,5 @@ class AppTest extends \PHPUnit_Framework_TestCase
 		$_SERVER['HTTPS'] = 'on';
 
 		$this->assertTrue(App::isSslEnabled());
-	}
-
-	protected function setUp()
-	{
-		$_SERVER['REQUEST_URI'] = 'random-uri';
-
-		$_SERVER['SERVER_NAME'] = 'random-server-name';
-	}
-
-	protected function tearDown()
-	{
-		unset($_SERVER['REQUEST_URI']);
-
-		unset($_SERVER['SERVER_NAME']);
-
-		App::setBaseUrl(null);
 	}
 }

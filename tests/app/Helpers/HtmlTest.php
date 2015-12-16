@@ -6,13 +6,16 @@
  */
 
 namespace Tests\app\Helpers;
+
 use App\Helpers\Html;
+use App\Kernel\App;
+use Tests\BaseTest;
 
 /**
  * Class HtmlTest
  * @package tests\app\Helpers
  */
-class HtmlTest extends \PHPUnit_Framework_TestCase
+class HtmlTest extends BaseTest
 {
 	/**
 	 * @test
@@ -21,10 +24,10 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
 	{
 		$html = new Html();
 
-		$url = getenv('BASE_URL') . "/asset.css";
+		$url = App::getBaseURL() . "/asset.css";
 
 		$this->expectOutputString("<link href='$url' rel='stylesheet' type='text/css' />");
 
-		$html->stylesheet('asset.cs');
+		$html->stylesheet('asset.css');
 	}
 }

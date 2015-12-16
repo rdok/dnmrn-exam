@@ -6,6 +6,7 @@
  */
 
 namespace App\Helpers;
+use App\Kernel\App;
 
 /**
  * Class Html
@@ -16,6 +17,6 @@ class Html
 
 	public function stylesheet($url, $rel = 'stylesheet', $type = 'text/css')
 	{
-		echo "<link href='" . getenv('BASE_URL') . "$url' rel='$rel' type='$type' />";
+		echo "<link href='" . App::getBaseURL() . "/$url' rel='$rel' type='$type' />";
 	}
 }
