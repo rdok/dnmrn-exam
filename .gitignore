@@ -1,5 +1,6 @@
-vendor
-public/vendor
+/vendor
+/public/vendor
+.gitignore
 
 # Created by https://www.gitignore.io/api/phpstorm
 
