@@ -13,6 +13,8 @@ namespace App\Kernel;
  */
 class App
 {
+	private static $credentials;
+
 
 	/**
 	 * @var
@@ -47,5 +49,42 @@ class App
 	public static function isSslEnabled()
 	{
 		return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+	}
+
+	public static function getDbHost()
+	{
+		return self::getEnvironmentVariable('DB_HOST');
+	}
+
+	private static function getEnvironmentVariable($varName)
+	{
+		if ( ! isset (self::$credentials[ $varName ]) ) self::$credentials[ $varName ] = getenv($varName);
+
+		return self::$credentials[ $varName ];
+	}
+
+	public static function getDbName()
+	{
+		return self::getEnvironmentVariable('DB_NAME');
+	}
+
+	public static function getDbPort()
+	{
+		return self::getEnvironmentVariable('DB_PORT');
+	}
+
+	public static function getDbUsername()
+	{
+		return self::getEnvironmentVariable('DB_USERNAME');
+	}
+
+	public static function getDbPassword()
+	{
+		return self::getEnvironmentVariable('DB_PASSWORD');
+	}
+
+	public static function getPDOErrorMode()
+	{
+		return self::getEnvironmentVariable('PDO_ERROR_MODE');
 	}
 }
