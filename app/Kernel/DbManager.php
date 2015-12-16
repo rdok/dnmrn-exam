@@ -17,7 +17,7 @@ class DbManager
 
 	private $dbConnection;
 
-	private function __construct()
+	public function __construct()
 	{
 		try
 		{
@@ -32,7 +32,7 @@ class DbManager
 
 		} catch (PDOException $e)
 		{
-			throw new Exception("Could not connect to the database." . $e->getMessage());
+			throw new Exception("Could not connect to the database.\n" . $e->getMessage() . "\n\n");
 		}
 	}
 

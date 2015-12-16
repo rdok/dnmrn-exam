@@ -7,21 +7,11 @@
 
 namespace App\Models;
 
-abstract class DbRepository
+interface DbRepository
 {
-	protected $tableName;
-
-	function __construct($tableName)
-	{
-		$this->tableName = $tableName;
-	}
-
 	/**
 	 * @param array $fields
 	 * @return mixed
 	 */
-	public function getAll(array $fields = null)
-	{
-		return $this->tableName;
-	}
+	public function getAll(array $fields = null);
 }

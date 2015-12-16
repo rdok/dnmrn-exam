@@ -7,9 +7,9 @@
 
 namespace app\Models\Repositories;
 
-use App\Models\DbRepository;
+use App\Models\MySqlDbRepository;
 
-class DbShipRepository extends DbRepository implements ShipRepository
+class MySqlDbVesselRepository extends MySqlDbRepository implements VesselRepository
 {
 
 }
