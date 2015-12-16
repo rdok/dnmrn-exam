@@ -16,7 +16,8 @@
 	"autoload": {
 		"psr-4": {
 			"App\\": "app/",
-			"database\\": "database/"
+			"Database\\": "database/",
+			"Tests\\": "tests/"
 		}
 	},
 	"require-dev": {
