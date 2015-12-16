@@ -7,6 +7,7 @@
 
 namespace App\Controllers;
 
+use App\Helpers\Html;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
 
@@ -25,6 +26,6 @@ class BaseController
 
 		$this->twig = new Twig_Environment($this->loader);
 
-//		$this->twig->addGlobal('html', new Html());
+		$this->twig->addGlobal('html', new Html());
 	}
 }

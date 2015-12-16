@@ -19,4 +19,9 @@ class Html
 	{
 		echo "<link href='" . App::getBaseURL() . "/$url' rel='$rel' type='$type' />";
 	}
+
+	public function script($src)
+	{
+		echo "<script src='" . App::getBaseURL() . "/$src'></script>";
+	}
 }

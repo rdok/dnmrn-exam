@@ -27,7 +27,10 @@ class App
 		if ( ! isset(self::$baseUrl) )
 		{
 			$protocol = self::isSslEnabled() ? 'https' : 'http';
-			self::setBaseUrl("$protocol://" . $_SERVER['SERVER_NAME'] . getenv('BASE_URL'));
+
+			$requestUri = getenv('BASE_URL') === '/' ? '' : getenv('BASE_URL');
+
+			self::setBaseUrl("$protocol://" . $_SERVER['SERVER_NAME'] . $requestUri);
 		}
 
 		return self::$baseUrl;

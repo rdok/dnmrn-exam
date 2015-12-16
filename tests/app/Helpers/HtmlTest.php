@@ -30,4 +30,18 @@ class HtmlTest extends BaseTest
 
 		$html->stylesheet('asset.css');
 	}
+
+	/**
+	 * @test
+	 */
+	public function it_renders_script()
+	{
+		$html = new Html();
+
+		$url = App::getBaseURL() . "/script.js";
+
+		$this->expectOutputString("<script src='$url'></script>");
+
+		$html->script('script.js');
+	}
 }
