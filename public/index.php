@@ -14,6 +14,7 @@ $baseUrl = getenv('BASE_URL');
 $mux = new \Pux\Mux;
 
 $mux->get($baseUrl, ['App\Controllers\HomeController', 'home']);
+$mux->get($baseUrl . "vessels", ['App\Controllers\VesselsController', 'index']);
 
 $route = $mux->dispatch($_SERVER['REQUEST_URI']);
 

@@ -8,6 +8,7 @@
 namespace App\Controllers;
 
 use App\Helpers\Html;
+use App\Kernel\App;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
 

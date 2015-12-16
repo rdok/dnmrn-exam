@@ -45,7 +45,7 @@ class AppTest extends BaseTest
 
 		$this->assertTrue(App::isSslEnabled());
 	}
-	
+
 	/**
 	 * @test
 	 */
@@ -117,4 +117,5 @@ class AppTest extends BaseTest
 
 		$this->assertSame($randomDbErrorMode, App::getPDOErrorMode());
 	}
+
 }

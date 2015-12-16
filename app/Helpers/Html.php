@@ -6,6 +6,7 @@
  */
 
 namespace App\Helpers;
+
 use App\Kernel\App;
 
 /**
@@ -15,13 +16,45 @@ use App\Kernel\App;
 class Html
 {
 
+	/**
+	 * @param $url
+	 * @return string
+	 */
+	public static function url($url)
+	{
+		return App::getBaseURL() . "/{$url}";
+	}
+
+	/**
+	 * @param $url
+	 * @param string $rel
+	 * @param string $type
+	 */
 	public function stylesheet($url, $rel = 'stylesheet', $type = 'text/css')
 	{
 		echo "<link href='" . App::getBaseURL() . "/$url' rel='$rel' type='$type' />";
 	}
 
+	/**
+	 * @param $src
+	 */
 	public function script($src)
 	{
 		echo "<script src='" . App::getBaseURL() . "/$src'></script>";
+	}
+
+	/**
+	 * @param array $urls
+	 * @param string $active
+	 * @return string
+	 */
+	public function activate(array $urls, $active = 'active')
+	{
+		$requestUri = $_SERVER['REQUEST_URI'];
+
+		foreach ($urls as $url)
+		{
+			if ( $requestUri === $url ) return $active;
+		}
 	}
 }

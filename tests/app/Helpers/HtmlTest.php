@@ -17,9 +17,8 @@ use Tests\BaseTest;
  */
 class HtmlTest extends BaseTest
 {
-	/**
-	 * @test
-	 */
+
+	/** @test */
 	public function it_renders_stylesheet()
 	{
 		$html = new Html();
@@ -31,9 +30,7 @@ class HtmlTest extends BaseTest
 		$html->stylesheet('asset.css');
 	}
 
-	/**
-	 * @test
-	 */
+	/** @test */
 	public function it_renders_script()
 	{
 		$html = new Html();
@@ -43,5 +40,27 @@ class HtmlTest extends BaseTest
 		$this->expectOutputString("<script src='$url'></script>");
 
 		$html->script('script.js');
+	}
+
+	/** @test */
+	public function it_returns_absolute_url()
+	{
+		$html = new Html();
+
+		$this->assertSame(App::getBaseURL() . "/random-url", $html->url("random-url"));
+	}
+
+	/** @test */
+	public function it_sets_active_classes()
+	{
+		$html = new Html();
+		$expected = 'custom-active';
+		$randomUrl = 'random-url';
+
+		$_SERVER['REQUEST_URI'] = $randomUrl;
+
+		$actual = $html->activate([$randomUrl, 'random-url-2'], $expected);
+
+		$this->assertEquals($expected, $actual);
 	}
 }
