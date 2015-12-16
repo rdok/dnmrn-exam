@@ -10,14 +10,36 @@ namespace Database\migrations\mysql;
 use App\Kernel\App;
 use Database\migrations\MySqlMigration;
 
+/**
+ * Class CreateUsersTable
+ * @package Database\migrations\mysql
+ */
 class CreateUsersTable extends MySqlMigration
 {
-	private $tableName = 'users';
-	private $columnPrimaryKey = 'id';
-	private $columnFirstName = 'f_name';
-	private $columnLastName = 'l_name';
-	private $columnEmail = 'email';
-	private $columnPassword = 'password';
+	/**
+	 * @var string
+	 */
+	public static $tableName = 'users';
+	/**
+	 * @var string
+	 */
+	public static $columnFirstName = 'f_name';
+	/**
+	 * @var string
+	 */
+	public static $columnLastName = 'l_name';
+	/**
+	 * @var string
+	 */
+	public static $columnEmail = 'email';
+	/**
+	 * @var string
+	 */
+	public static $columnPassword = 'password';
+	/**
+	 * @var string
+	 */
+	public static $columnPrimaryKey = 'id';
 
 	/**
 	 * Run the migrations
@@ -26,22 +48,25 @@ class CreateUsersTable extends MySqlMigration
 	public function up()
 	{
 		$query =
-			"CREATE TABLE `" . App::getDbName() . "`.`{$this->tableName}` (" .
-			"`{$this->columnPrimaryKey}` INT NOT NULL AUTO_INCREMENT," .
-			"`{$this->columnFirstName}` VARCHAR(45) NULL," .
-			"`{$this->columnLastName}` VARCHAR(45) NULL," .
-			"`{$this->columnEmail}` VARCHAR(255) NOT NULL," .
-			"`{$this->columnPassword}` VARCHAR(60) NOT NULL," .
-			"PRIMARY KEY (`{$this->columnPrimaryKey}`) ," .
-			"UNIQUE INDEX `{$this->columnEmail}_UNIQUE` (`{$this->columnEmail}` ASC));";
+			"CREATE TABLE `" . App::getDbName() . "`.`" . self::$tableName . "` (" .
+			"`" . self::$columnPrimaryKey . "` INT NOT NULL AUTO_INCREMENT," .
+			"`" . self::$columnFirstName . "` VARCHAR(45) NULL," .
+			"`" . self::$columnLastName . "` VARCHAR(45) NULL," .
+			"`" . self::$columnEmail . "` VARCHAR(255) NOT NULL," .
+			"`" . self::$columnPassword . "` VARCHAR(60) NOT NULL," .
+			"PRIMARY KEY (`" . self::$columnPrimaryKey . "`) ," .
+			"UNIQUE INDEX `" . self::$columnEmail . "_UNIQUE` (`" . self::$columnEmail . "` ASC));";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
-		echo "Table '{$this->tableName}' created.\n";
+		echo "Table '" . self::$tableName . "' created.\n";
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTableName()
 	{
-		return $this->tableName;
+		return self::$tableName;
 	}
 }
