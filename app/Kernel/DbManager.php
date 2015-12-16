@@ -11,19 +11,20 @@ use Exception;
 use PDO;
 use PDOException;
 
-class DatabaseManager
+class DbManager
 {
 	private static $instance;
+
 	private $dbConnection;
 
 	private function __construct()
 	{
 		try
 		{
-			$this->dbConnection =
-				new PDO("mysql:host=" . App::getDbHost() . ";dbname=" . App::getDbName() .
-					";port=" . App::getDbPort(), App::getDbUsername(),
-					App::getDbPassword());
+			$this->dbConnection = new PDO("mysql:host=" . App::getDbHost() . ";" .
+				"dbname=" . App::getDbName() . ";" .
+				"port=" . App::getDbPort(),
+				App::getDbUsername(), App::getDbPassword());
 
 			$this->dbConnection->setAttribute(PDO::ATTR_ERRMODE, App::getPDOErrorMode()); // CHANGE THE ERROR MODE, THROW AN EXCEPTION WHEN AN ERROR IS FOUND
 

@@ -7,7 +7,7 @@
 
 namespace database\migrations;
 
-class CreateShipsTable
+class CreateShipsTable extends Migration
 {
 
 }

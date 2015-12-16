@@ -7,23 +7,27 @@
 
 namespace database\migrations;
 
+use App\Kernel\DbManager;
+
 abstract class Migration
 {
-	protected $db;
 	public static $columnCreatedAt = "created_at";
 	public static $columnCreatedAtFormat = "Y-m-d H:i:s";
 	public static $columnUpdatedAt = "updated_at";
 	public static $columnUpdateAtFormat = "Y-m-d H:i:s";
-	public function __construct( Database $db = null )
+	protected $db;
+
+	public function __construct(DbManager $db = null)
 	{
 		$this->db = is_null($db) ? (new MySqlDatabase()) : $db;
 	}
-	protected abstract function getTableName();
+
 	/**
 	 * Run the migrations
 	 * @return mixed
 	 */
 	public abstract function up();
+
 	/**
 	 * Reverse the migrations
 	 */
@@ -36,4 +40,6 @@ abstract class Migration
 			->execute();
 		echo "Destroy " . $this->getTableName() . " table complete.\n";
 	}
+
+	protected abstract function getTableName();
 }
