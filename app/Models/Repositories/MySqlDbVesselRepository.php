@@ -5,7 +5,7 @@
  * @since   16/12/2015
  */
 
-namespace app\Models\Repositories;
+namespace App\Models\Repositories;
 
 use App\Models\MySqlDbRepository;
 

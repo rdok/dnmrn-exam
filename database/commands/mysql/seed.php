@@ -12,7 +12,7 @@ $dotenv->load();
 $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USERNAME', 'DB_PASSWORD', 'DB_PORT'])->notEmpty();
 
 $mysqlDatabase = new \Database\migrations\mysql\SetUpMySqlDb();
-$mysqlDatabaseSeeder = new \Database\seeds\mysql\MySqlDatabaseSeeder();
+$mysqlDatabaseSeeder = new \Database\seeds\MySqlDatabaseSeeder();
 
 $mysqlDatabase->down();
 $mysqlDatabase->up();

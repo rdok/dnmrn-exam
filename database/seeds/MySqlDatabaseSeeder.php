@@ -5,9 +5,11 @@
  * @since   16/12/2015
  */
 
-namespace Database\seeds\mysql;
-
-use Database\seeds\Seeder;
+namespace Database\seeds;
+use Database\seeds\mysql\CompaniesSeeder;
+use Database\seeds\mysql\TypesSeeder;
+use Database\seeds\mysql\UsersSeeder;
+use Database\seeds\mysql\VesselsSeeder;
 
 /**
  * Class MySqlDatabaseSeeder
@@ -27,6 +29,9 @@ class MySqlDatabaseSeeder extends Seeder
 	 * @var TypesSeeder
 	 */
 	private $typesSeeder;
+	/**
+	 * @var CompaniesSeeder
+	 */
 	private $companiesSeeder;
 
 	/**
