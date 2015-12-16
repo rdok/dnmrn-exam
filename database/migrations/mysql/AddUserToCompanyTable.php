@@ -28,8 +28,8 @@ class AddUserToCompanyTable extends MySqlMigration
 	{
 		$query =
 			"ALTER TABLE `" . App::getDbName() . "`.`{$this->tableNameCompanies}`
-			ADD COLUMN `{$this->columnUserId}` INT NOT NULL COMMENT '' AFTER `{$this->columnName}`,
-			ADD INDEX `{$this->indexCompaniesUsers}` (`{$this->columnUserId}` ASC)  COMMENT '';";
+			ADD COLUMN `{$this->columnUserId}` INT NULL,
+			ADD INDEX `{$this->indexCompaniesUsers}` (`{$this->columnUserId}` ASC);";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
@@ -43,7 +43,7 @@ class AddUserToCompanyTable extends MySqlMigration
 
 		$this->db->getConnection()->prepare($query)->execute();
 
-		echo "Added company to vessels table.\n";
+		echo "Added user to company table.\n";
 	}
 
 	public function getTableName()

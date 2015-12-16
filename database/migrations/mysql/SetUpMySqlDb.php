@@ -65,11 +65,12 @@ class SetUpMySqlDb
 		$this->createTypesTable->up();
 		$this->createCompaniesTable->up();
 		$this->createUsersTable->up();
+
 		$this->addTypeToVesselTable->up();
 		$this->addCompanyToVesselTable->up();
 		$this->addUserToCompanyTable->up();
 
-		echo "Migration process completed.\n";
+		echo "Migration process completed.\n\n";
 	}
 
 	/**
@@ -78,11 +79,10 @@ class SetUpMySqlDb
 	public function down()
 	{
 		$this->createShipsTable->down();
-		$this->createShipsTable->down();
 		$this->createTypesTable->down();
-		$this->createCompaniesTable->down();
 		$this->createUsersTable->down();
+		$this->createCompaniesTable->down();
 
-		echo "Database tables destroyed.\n";
+		echo "Database tables destroyed.\n\n";
 	}
 }

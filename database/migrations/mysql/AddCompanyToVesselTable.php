@@ -28,7 +28,7 @@ class AddCompanyToVesselTable extends MySqlMigration
 	{
 		$query =
 			"ALTER TABLE `" . App::getDbName() . "`.`{$this->tableNameVessels}`
-			ADD COLUMN `{$this->columnCompanyId}` INT NOT NULL COMMENT '' AFTER `{$this->columnName}`,
+			ADD COLUMN `{$this->columnCompanyId}` INT NULL COMMENT '' AFTER `{$this->columnName}`,
 			ADD INDEX `{$this->indexCategoriesVessels}` (`{$this->columnCompanyId}` ASC)  COMMENT '';";
 
 		$this->db->getConnection()->prepare($query)->execute();

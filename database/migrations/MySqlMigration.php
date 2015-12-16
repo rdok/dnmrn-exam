@@ -34,6 +34,16 @@ abstract class MySqlMigration implements Migration
 	 */
 	public function down()
 	{
+		$tableDeleted = $this->db->getConnection()
+			->prepare("DESCRIBE `" . App::getDbName() . "`.`" . $this->getTableName() . "`")
+			->execute();
+
+		if ( $tableDeleted === false ) return;
+
+		$this->db->getConnection()
+			->prepare("SET FOREIGN_KEY_CHECKS=0")
+			->execute();
+
 		$this->db->getConnection()
 			->prepare("TRUNCATE TABLE `" . App::getDbName() . "`.`" . $this->getTableName() . "`")
 			->execute();
@@ -42,6 +52,17 @@ abstract class MySqlMigration implements Migration
 			->prepare("DROP TABLE IF EXISTS `" . App::getDbName() . "`.`" . $this->getTableName() . "`")
 			->execute();
 
-		echo "'" . $this->getTableName() . "' table destroyed.\n";
+		$this->db->getConnection()
+			->prepare("SET FOREIGN_KEY_CHECKS=1")
+			->execute();
+
+		if ( $tableDeleted === false )
+		{
+			echo "Error: Unable to delete '" . $this->getTableName() . "'.\n";
+		} else
+		{
+			echo "'" . $this->getTableName() . "' table destroyed.\n";
+		}
+
 	}
 }

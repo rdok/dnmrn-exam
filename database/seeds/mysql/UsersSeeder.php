@@ -26,7 +26,6 @@ class UsersSeeder extends Seeder
 			$email = $this->faker->unique()->email();
 			$password = password_hash($this->faker->password(), PASSWORD_DEFAULT);
 
-
 			$query =
 				"INSERT INTO `" . App::getDbName() . "`.`" . CreateUsersTable::$tableName . "` " .
 				"(`" . CreateUsersTable::$columnFirstName . "`, `" . CreateUsersTable::$columnLastName . "`," .

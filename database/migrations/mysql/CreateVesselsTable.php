@@ -12,10 +12,10 @@ use Database\migrations\MySqlMigration;
 
 class CreateVesselsTable extends MySqlMigration
 {
-	private $tableName = 'vessels';
-	private $columnPrimaryKey = 'id';
-	private $columnImo = 'imo';
-	private $columnName = 'name';
+	public static $tableName = 'vessels';
+	public static $columnPrimaryKey = 'id';
+	public static $columnImo = 'imo';
+	public static $columnName = 'name';
 
 	/**
 	 * Run the migrations
@@ -24,21 +24,21 @@ class CreateVesselsTable extends MySqlMigration
 	public function up()
 	{
 		$query =
-			"CREATE TABLE `" . App::getDbName() . "`.`{$this->tableName}` (" .
-			"`{$this->columnPrimaryKey}` INT NOT NULL AUTO_INCREMENT," .
-			"`{$this->columnImo}` VARCHAR(45) NOT NULL," .
-			"`{$this->columnName}` VARCHAR(45) NOT NULL," .
-			"PRIMARY KEY (`{$this->columnPrimaryKey}`) ," .
-			"UNIQUE INDEX `{$this->columnImo}_UNIQUE` (`{$this->columnImo}` ASC)," .
-			"UNIQUE INDEX `{$this->columnName}_UNIQUE` (`{$this->columnName}` ASC));";
+			"CREATE TABLE `" . App::getDbName() . "`.`" . self::$tableName . "` (" .
+			"`" . self::$columnPrimaryKey . "` INT NOT NULL AUTO_INCREMENT," .
+			"`" . self::$columnImo . "` VARCHAR(45) NOT NULL," .
+			"`" . self::$columnName . "` VARCHAR(45) NOT NULL," .
+			"PRIMARY KEY (`" . self::$columnPrimaryKey . "`) ," .
+			"UNIQUE INDEX `" . self::$columnImo . "_UNIQUE` (`" . self::$columnImo . "` ASC)," .
+			"UNIQUE INDEX `" . self::$columnName . "_UNIQUE` (`" . self::$columnName . "` ASC));";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
-		echo "Table '{$this->tableName}' created.\n";
+		echo "Table '" . self::$tableName . "' created.\n";
 	}
 
 	public function getTableName()
 	{
-		return $this->tableName;
+		return self::$tableName;
 	}
 }
