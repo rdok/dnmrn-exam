@@ -13,5 +13,5 @@ interface Migration
 
 	public function down();
 
-	public function getTableNameVessels();
+	public function getTableName();
 }

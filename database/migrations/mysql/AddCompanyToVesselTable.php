@@ -10,15 +10,15 @@ namespace Database\migrations\mysql;
 use App\Kernel\App;
 use Database\migrations\MySqlMigration;
 
-class AddTypeToVesselTable extends MySqlMigration
+class AddCompanyToVesselTable extends MySqlMigration
 {
 	private $tableNameVessels = 'vessels';
-	private $tableNameTypes = 'types';
-	private $columnTypeId = 'type_id';
+	private $tableNameCompanies = 'companies';
+	private $columnCompanyId = 'company_id';
 	private $columnForeignKey = 'id';
 	private $columnName = 'name';
-	private $indexTypesVessels = 'types_vessels_id_index';
-	private $foreignTypesVessels = 'types_vessels_id_foreign';
+	private $indexCategoriesVessels = 'companies_vessels_id_index';
+	private $foreignCompaniesVessels = 'companies_vessels_id_foreign';
 
 	/**
 	 * Run the migrations
@@ -28,22 +28,22 @@ class AddTypeToVesselTable extends MySqlMigration
 	{
 		$query =
 			"ALTER TABLE `" . App::getDbName() . "`.`{$this->tableNameVessels}`
-			ADD COLUMN `{$this->columnTypeId}` INT NOT NULL COMMENT '' AFTER `{$this->columnName}`,
-			ADD INDEX `{$this->indexTypesVessels}` (`{$this->columnTypeId}` ASC)  COMMENT '';";
+			ADD COLUMN `{$this->columnCompanyId}` INT NOT NULL COMMENT '' AFTER `{$this->columnName}`,
+			ADD INDEX `{$this->indexCategoriesVessels}` (`{$this->columnCompanyId}` ASC)  COMMENT '';";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
 		$query =
 			"ALTER TABLE `" . App::getDbName() . "`.`{$this->tableNameVessels}`
-			ADD CONSTRAINT `{$this->foreignTypesVessels}`
-			  FOREIGN KEY (`{$this->columnTypeId}`)
-			  REFERENCES `" . App::getDbName() . "`.`{$this->tableNameTypes}` (`{$this->columnForeignKey}`)
+			ADD CONSTRAINT `{$this->foreignCompaniesVessels}`
+			  FOREIGN KEY (`{$this->columnCompanyId}`)
+			  REFERENCES `" . App::getDbName() . "`.`{$this->tableNameCompanies}` (`{$this->columnForeignKey}`)
 			  ON DELETE RESTRICT
 			  ON UPDATE CASCADE;";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
-		echo "Added type to vessels table.\n";
+		echo "Added company to vessels table.\n";
 	}
 
 	public function getTableName()

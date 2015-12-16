@@ -33,6 +33,14 @@ class SetUpMySqlDb
 	 * @var AddTypeToVesselTable
 	 */
 	private $addTypeToVesselTable;
+	/**
+	 * @var AddCompanyToVesselTable
+	 */
+	private $addCompanyToVesselTable;
+	/**
+	 * @var AddUserToCompanyTable
+	 */
+	private $addUserToCompanyTable;
 
 	/**
 	 *
@@ -44,6 +52,8 @@ class SetUpMySqlDb
 		$this->createCompaniesTable = new CreateCompaniesTable();
 		$this->createUsersTable = new CreateUsersTable();
 		$this->addTypeToVesselTable = new AddTypeToVesselTable();
+		$this->addCompanyToVesselTable = new AddCompanyToVesselTable();
+		$this->addUserToCompanyTable = new AddUserToCompanyTable();
 	}
 
 	/**
@@ -56,6 +66,8 @@ class SetUpMySqlDb
 		$this->createCompaniesTable->up();
 		$this->createUsersTable->up();
 		$this->addTypeToVesselTable->up();
+		$this->addCompanyToVesselTable->up();
+		$this->addUserToCompanyTable->up();
 
 		echo "Migration process completed.\n";
 	}

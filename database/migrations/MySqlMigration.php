@@ -35,13 +35,13 @@ abstract class MySqlMigration implements Migration
 	public function down()
 	{
 		$this->db->getConnection()
-			->prepare("TRUNCATE TABLE `" . App::getDbName() . "`.`" . $this->getTableNameVessels() . "`")
+			->prepare("TRUNCATE TABLE `" . App::getDbName() . "`.`" . $this->getTableName() . "`")
 			->execute();
 
 		$this->db->getConnection()
-			->prepare("DROP TABLE IF EXISTS `" . App::getDbName() . "`.`" . $this->getTableNameVessels() . "`")
+			->prepare("DROP TABLE IF EXISTS `" . App::getDbName() . "`.`" . $this->getTableName() . "`")
 			->execute();
 
-		echo "'" . $this->getTableNameVessels() . "' table destroyed.\n";
+		echo "'" . $this->getTableName() . "' table destroyed.\n";
 	}
 }

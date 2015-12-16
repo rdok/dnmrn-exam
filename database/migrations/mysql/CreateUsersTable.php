@@ -5,7 +5,7 @@
  * @since   16/12/2015
  */
 
-namespace database\migrations\mysql;
+namespace Database\migrations\mysql;
 
 use App\Kernel\App;
 use Database\migrations\MySqlMigration;
@@ -40,7 +40,7 @@ class CreateUsersTable extends MySqlMigration
 		echo "Table '{$this->tableName}' created.\n";
 	}
 
-	public function getTableNameVessels()
+	public function getTableName()
 	{
 		return $this->tableName;
 	}
