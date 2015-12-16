@@ -5,10 +5,11 @@
  * @since   16/12/2015
  */
 
-namespace App\Models;
+namespace App\Models\Repositories\Types;
 
-interface DbRepository
+interface TypesRepository
 {
+
 	/**
 	 * @param array $fields
 	 * @return mixed

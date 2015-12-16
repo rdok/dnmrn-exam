@@ -7,9 +7,11 @@
 
 namespace App\Models\Repositories;
 
-use App\Models\MySqlDbRepository;
-
-class MySqlDbVesselRepository extends MySqlDbRepository implements VesselRepository
+interface DbRepository
 {
-
+	/**
+	 * @param array $fields
+	 * @return mixed
+	 */
+	public function getAll(array $fields = null);
 }

@@ -26,12 +26,21 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview {{ html.activate(['/vessels', '/']) }}">
-                <a href="#"> <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                    <i class="fa fa-angle-left pull-right"></i> </a>
+            <li class="treeview {{ html.activate(['/vessels', '/vessels/types']) }}">
+                <a href="#"> <i class="fa fa-ship"></i> <span>Vessels</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
                 <ul class="treeview-menu">
-                    <li class="{{ html.activate(['/vessels']) }}"><a href="{{ html.url('vessels') }}"><i class="fa fa-circle-o"></i> Vessels</a></li>
+                    <li class="{{ html.activate(['/vessels']) }}">
+                        <a href="{{ html.url('vessels') }}"><i class="fa fa-circle-o"></i> Index</a></li>
+                    <li class="{{ html.activate(['/vessels/types']) }}">
+                        <a href="{{ html.url('vessels/types') }}"><i class="fa fa-circle-o"></i> Types</a></li>
                 </ul>
+            </li>
+            <li class="treeview {{ html.activate(['/companies']) }}">
+                <a href="{{ html.url('companies') }}"> <i class="fa fa-building"></i> <span>Companies</span> </a>
+            </li>
+            <li class="treeview {{ html.activate(['/users']) }}">
+                <a href="{{ html.url('users') }}"> <i class="fa fa-users"></i> <span>Users</span> </a>
             </li>
 
         </ul>

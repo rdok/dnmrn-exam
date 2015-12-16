@@ -5,11 +5,9 @@
  * @since   16/12/2015
  */
 
-namespace App\Models;
+namespace App\Models\Repositories;
 
-use App\Kernel\App;
 use App\Kernel\DbManager;
-use Database\migrations\mysql\CreateVesselsTable;
 use Exception;
 use PDO;
 
@@ -43,7 +41,7 @@ abstract class MySqlDbRepository implements DbRepository
 			$columns = substr($columns, 0, -2);
 		}
 
-		$query = "SELECT $columns FROM `" . CreateVesselsTable::$tableName . "`";
+		$query = "SELECT $columns FROM `{$this->tableName}`";
 
 		if ( $query = DbManager::getConnection()->query($query) )
 		{

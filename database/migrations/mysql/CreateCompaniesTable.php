@@ -8,13 +8,11 @@
 namespace Database\migrations\mysql;
 
 use App\Kernel\App;
+use App\Models\Company;
 use Database\migrations\MySqlMigration;
 
 class CreateCompaniesTable extends MySqlMigration
 {
-	public static $tableName = 'companies';
-	public static $columnPrimaryKey = 'id';
-	public static $columnName = 'name';
 
 	/**
 	 * Run the migrations
@@ -23,19 +21,19 @@ class CreateCompaniesTable extends MySqlMigration
 	public function up()
 	{
 		$query =
-			"CREATE TABLE `" . App::getDbName() . "`.`" . self::$tableName . "` (" .
-			"`" . self::$columnPrimaryKey . "` INT NOT NULL AUTO_INCREMENT," .
-			"`" . self::$columnName . "` VARCHAR(45) NOT NULL," .
-			"PRIMARY KEY (`" . self::$columnPrimaryKey . "`) ," .
-			"UNIQUE INDEX `" . self::$columnName . "_UNIQUE` (`" . self::$columnName . "` ASC));";
+			"CREATE TABLE `" . App::getDbName() . "`.`" . Company::$tableName . "` (" .
+			"`" . Company::$columnPrimaryKey . "` INT NOT NULL AUTO_INCREMENT," .
+			"`" . Company::$columnName . "` VARCHAR(45) NOT NULL," .
+			"PRIMARY KEY (`" . Company::$columnPrimaryKey . "`) ," .
+			"UNIQUE INDEX `" . Company::$columnName . "_UNIQUE` (`" . Company::$columnName . "` ASC));";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
-		echo "Table '" . self::$tableName . "' created.\n";
+		echo "Table '" . Company::$tableName . "' created.\n";
 	}
 
 	public function getTableName()
 	{
-		return self::$tableName;
+		return Company::$tableName;
 	}
 }

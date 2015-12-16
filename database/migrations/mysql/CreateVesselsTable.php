@@ -8,14 +8,11 @@
 namespace Database\migrations\mysql;
 
 use App\Kernel\App;
+use app\Models\Vessel;
 use Database\migrations\MySqlMigration;
 
 class CreateVesselsTable extends MySqlMigration
 {
-	public static $tableName = 'vessels';
-	public static $columnPrimaryKey = 'id';
-	public static $columnImo = 'imo';
-	public static $columnName = 'name';
 
 	/**
 	 * Run the migrations
@@ -24,21 +21,21 @@ class CreateVesselsTable extends MySqlMigration
 	public function up()
 	{
 		$query =
-			"CREATE TABLE `" . App::getDbName() . "`.`" . self::$tableName . "` (" .
-			"`" . self::$columnPrimaryKey . "` INT NOT NULL AUTO_INCREMENT," .
-			"`" . self::$columnImo . "` VARCHAR(45) NOT NULL," .
-			"`" . self::$columnName . "` VARCHAR(45) NOT NULL," .
-			"PRIMARY KEY (`" . self::$columnPrimaryKey . "`) ," .
-			"UNIQUE INDEX `" . self::$columnImo . "_UNIQUE` (`" . self::$columnImo . "` ASC)," .
-			"UNIQUE INDEX `" . self::$columnName . "_UNIQUE` (`" . self::$columnName . "` ASC));";
+			"CREATE TABLE `" . App::getDbName() . "`.`" . Vessel::$tableName . "` (" .
+			"`" . Vessel::$columnPrimaryKey . "` INT NOT NULL AUTO_INCREMENT," .
+			"`" . Vessel::$columnImo . "` VARCHAR(45) NOT NULL," .
+			"`" . Vessel::$columnName . "` VARCHAR(45) NOT NULL," .
+			"PRIMARY KEY (`" . Vessel::$columnPrimaryKey . "`) ," .
+			"UNIQUE INDEX `" . Vessel::$columnImo . "_UNIQUE` (`" . Vessel::$columnImo . "` ASC)," .
+			"UNIQUE INDEX `" . Vessel::$columnName . "_UNIQUE` (`" . Vessel::$columnName . "` ASC));";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
-		echo "Table '" . self::$tableName . "' created.\n";
+		echo "Table '" . Vessel::$tableName . "' created.\n";
 	}
 
 	public function getTableName()
 	{
-		return self::$tableName;
+		return Vessel::$tableName;
 	}
 }

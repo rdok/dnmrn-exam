@@ -5,13 +5,9 @@
  * @since   16/12/2015
  */
 
-namespace App\Models\Repositories;
+namespace App\Models\Repositories\Users;
 
-/**
- * Interface ShipRepository
- * @package app\Models\Repositories
- */
-interface VesselRepository
+interface UsersRepository
 {
 
 	/**
