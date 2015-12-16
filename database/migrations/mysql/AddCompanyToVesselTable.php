@@ -8,17 +8,12 @@
 namespace Database\migrations\mysql;
 
 use App\Kernel\App;
+use App\Models\Company;
+use App\Models\Vessel;
 use Database\migrations\MySqlMigration;
 
 class AddCompanyToVesselTable extends MySqlMigration
 {
-	private $tableNameVessels = 'vessels';
-	private $tableNameCompanies = 'companies';
-	private $columnCompanyId = 'company_id';
-	private $columnForeignKey = 'id';
-	private $columnName = 'name';
-	private $indexCategoriesVessels = 'companies_vessels_id_index';
-	private $foreignCompaniesVessels = 'companies_vessels_id_foreign';
 
 	/**
 	 * Run the migrations
@@ -27,19 +22,18 @@ class AddCompanyToVesselTable extends MySqlMigration
 	public function up()
 	{
 		$query =
-			"ALTER TABLE `" . App::getDbName() . "`.`{$this->tableNameVessels}`
-			ADD COLUMN `{$this->columnCompanyId}` INT NULL COMMENT '' AFTER `{$this->columnName}`,
-			ADD INDEX `{$this->indexCategoriesVessels}` (`{$this->columnCompanyId}` ASC)  COMMENT '';";
+			"ALTER TABLE `" . App::getDbName() . "`.`" . Vessel::$tableName . "`" .
+			"ADD COLUMN `" . Vessel::$columnCompanyId . "` INT NULL," .
+			"ADD INDEX `" . Vessel::$indexCategoriesVessels . "` (`" . Vessel::$columnCompanyId . "` ASC);";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
 		$query =
-			"ALTER TABLE `" . App::getDbName() . "`.`{$this->tableNameVessels}`
-			ADD CONSTRAINT `{$this->foreignCompaniesVessels}`
-			  FOREIGN KEY (`{$this->columnCompanyId}`)
-			  REFERENCES `" . App::getDbName() . "`.`{$this->tableNameCompanies}` (`{$this->columnForeignKey}`)
-			  ON DELETE RESTRICT
-			  ON UPDATE CASCADE;";
+			"ALTER TABLE `" . App::getDbName() . "`.`" . Vessel::$tableName . "`" .
+			"ADD CONSTRAINT `" . Vessel::$foreignCompaniesVessels . "`" .
+			"FOREIGN KEY (`" . Vessel::$columnForeignKey . "`)" .
+			"REFERENCES `" . App::getDbName() . "`.`" . Company::$tableName . "`) " .
+			"ON DELETE RESTRICT ON UPDATE CASCADE;";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
@@ -48,6 +42,6 @@ class AddCompanyToVesselTable extends MySqlMigration
 
 	public function getTableName()
 	{
-		return $this->tableNameVessels;
+		return Vessel::$tableName;
 	}
 }

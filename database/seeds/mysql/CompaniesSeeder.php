@@ -8,7 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
-use Database\migrations\mysql\CreateCompaniesTable;
+use App\Models\Company;
 use Database\seeds\Seeder;
 
 class CompaniesSeeder extends Seeder
@@ -24,13 +24,13 @@ class CompaniesSeeder extends Seeder
 			$name = $this->faker->unique()->company();
 
 			$query =
-				"INSERT INTO `" . App::getDbName() . "`.`" . CreateCompaniesTable::$tableName . "` " .
-				"(`" . CreateCompaniesTable::$columnName . "`) " .
+				"INSERT INTO `" . App::getDbName() . "`.`" . Company::$tableName . "` " .
+				"(`" . Company::$columnName . "`) " .
 				"VALUES ('$name')";
 
 			$this->db->getConnection()->query($query);
 		}
 
-		echo "Seed for '" . CreateCompaniesTable::$tableName . "' table complete.\n";
+		echo "Seed for '" . Company::$tableName . "' table complete.\n";
 	}
 }

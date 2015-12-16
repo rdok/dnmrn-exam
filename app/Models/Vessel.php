@@ -13,4 +13,8 @@ class Vessel
 	public static $columnPrimaryKey = 'id';
 	public static $columnImo = 'imo';
 	public static $columnName = 'name';
+	public static $columnCompanyId = 'company_id';
+	public static $indexCategoriesVessels = 'companies_vessels_id_index';
+	public static $foreignCompaniesVessels = 'companies_vessels_id_foreign';
+	public static $columnForeignKey = 'id';
 }

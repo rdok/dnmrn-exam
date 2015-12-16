@@ -8,6 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
+use App\Models\Vessel;
 use Database\migrations\mysql\CreateVesselsTable;
 use Database\seeds\Seeder;
 
@@ -25,12 +26,12 @@ class VesselsSeeder extends Seeder
 			$name = $this->faker->name();
 
 			$query =
-				"INSERT INTO `" . App::getDbName() . "`.`" . CreateVesselsTable::$tableName . "` " .
-				"(`" . CreateVesselsTable::$columnImo . "`, `" . CreateVesselsTable::$columnName . "`) " .
+				"INSERT INTO `" . App::getDbName() . "`.`" . Vessel::$tableName . "` " .
+				"(`" . Vessel::$columnImo . "`, `" . Vessel::$columnName . "`) " .
 				"VALUES ('$imo', '$name')";
 
 			$this->db->getConnection()->query($query);
 		}
-		echo "Seed for '" . CreateVesselsTable::$tableName . "' table complete.\n";
+		echo "Seed for '" . Vessel::$tableName . "' table complete.\n";
 	}
 }

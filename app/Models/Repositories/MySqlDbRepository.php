@@ -13,7 +13,7 @@ use PDO;
 
 abstract class MySqlDbRepository implements DbRepository
 {
-	private $tableName;
+	protected $tableName;
 
 	function __construct($tableName)
 	{

@@ -42,7 +42,9 @@ class VesselsController extends BaseController
 	 */
 	public function index()
 	{
-		$vessels = $this->vesselsRepository->getAll();
+		$vessels = $this->vesselsRepository->getWithRelations();
+
+		d($vessels);
 
 		$this->twig->display('vessels/index.twig', compact('vessels'));
 	}

@@ -8,7 +8,7 @@
 namespace Database\migrations\mysql;
 
 use App\Kernel\App;
-use app\Models\Vessel;
+use App\Models\Vessel;
 use Database\migrations\MySqlMigration;
 
 class CreateVesselsTable extends MySqlMigration

@@ -8,7 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
-use Database\migrations\mysql\CreateTypesTable;
+use App\Models\Type;
 use Database\seeds\Seeder;
 
 class TypesSeeder extends Seeder
@@ -24,12 +24,12 @@ class TypesSeeder extends Seeder
 			$name = $this->faker->name();
 
 			$query =
-				"INSERT INTO `" . App::getDbName() . "`.`" . CreateTypesTable::$tableName . "` " .
-				"(`" . CreateTypesTable::$columnName . "`) " .
+				"INSERT INTO `" . App::getDbName() . "`.`" . Type::$tableName . "` " .
+				"(`" . Type::$columnName . "`) " .
 				"VALUES ('$name')";
 
 			$this->db->getConnection()->query($query);
 		}
-		echo "Seed for '" . CreateTypesTable::$tableName . "' table complete.\n";
+		echo "Seed for '" . Type::$tableName . "' table complete.\n";
 	}
 }

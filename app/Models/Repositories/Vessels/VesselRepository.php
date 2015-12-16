@@ -19,4 +19,9 @@ interface VesselRepository
 	 * @return mixed
 	 */
 	public function getAll(array $fields = null);
+
+	/**
+	 * @return mixed
+	 */
+	public function getWithRelations();
 }

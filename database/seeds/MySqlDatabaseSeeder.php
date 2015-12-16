@@ -7,6 +7,7 @@
 
 namespace Database\seeds;
 use Database\seeds\mysql\CompaniesSeeder;
+use Database\seeds\mysql\CompanyVesselSeeder;
 use Database\seeds\mysql\TypesSeeder;
 use Database\seeds\mysql\UsersSeeder;
 use Database\seeds\mysql\VesselsSeeder;
@@ -17,6 +18,10 @@ use Database\seeds\mysql\VesselsSeeder;
  */
 class MySqlDatabaseSeeder extends Seeder
 {
+	/**
+	 * @var CompanyVesselSeeder
+	 */
+	protected $companyVesselSeeder;
 	/**
 	 * @var UsersSeeder
 	 */
@@ -45,6 +50,7 @@ class MySqlDatabaseSeeder extends Seeder
 		$this->vesselsSeeder = new VesselsSeeder();
 		$this->typesSeeder = new TypesSeeder();
 		$this->companiesSeeder = new CompaniesSeeder();
+		$this->companyVesselSeeder = new CompanyVesselSeeder();
 	}
 
 	/**
@@ -56,5 +62,6 @@ class MySqlDatabaseSeeder extends Seeder
 		$this->vesselsSeeder->run();
 		$this->typesSeeder->run();
 		$this->companiesSeeder->run();
+		$this->companyVesselSeeder->run();
 	}
 }
