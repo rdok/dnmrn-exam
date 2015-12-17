@@ -11,6 +11,13 @@ interface CompaniesRepository
 {
 
 	/**
+	 * @param int $from
+	 * @param int $to
+	 * @return mixed
+	 */
+	public function getWithRelations($from = 1, $to = 10);
+
+	/**
 	 * @param array $fields
 	 * @return mixed
 	 */

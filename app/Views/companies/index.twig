@@ -12,23 +12,20 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Name</th>
+                    <th>Managed By</th>
                 </tr>
                 {% for company in companies %}
                     <tr>
                         <td>{{ company.companies_name }}</td>
+                        <td>{{ company.users_email }}</td>
                     </tr>
                 {% endfor %}
 
             </table>
         </div><!-- /.box-body -->
+
         <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
+            {{ paginate|raw }}
         </div>
     </div><!-- /.box -->
 

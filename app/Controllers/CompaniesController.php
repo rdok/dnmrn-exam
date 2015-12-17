@@ -8,6 +8,7 @@
 namespace App\Controllers;
 
 use App\Models\Repositories\Companies\MySqlDbCompaniesRepository;
+use JasonGrimes\Paginator;
 
 class CompaniesController extends BaseController
 {
@@ -22,9 +23,20 @@ class CompaniesController extends BaseController
 
 	public function index()
 	{
-		$companies = $this->companiesRepository->getAll();
+		$currentPage = intval(isset($_GET['pg']) ? $_GET['pg'] : 1);
+		$from = $currentPage < 1 ? 0 : ($currentPage - 1) * 10;
+		$to = $currentPage + 10;
 
-		$this->twig->display('companies/index.twig', compact('companies'));
+		$companies = $this->companiesRepository->getWithRelations($from, $to);
+		$totalItems = $this->companiesRepository->count();
+
+		$itemsPerPage = 10;
+		$urlPattern = '/companies?pg=(:num)';
+		$paginate = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+
+		$companies = json_decode(json_encode($companies), false);
+
+		$this->twig->display('companies/index.twig', compact('companies', 'paginate'));
 	}
 
 }

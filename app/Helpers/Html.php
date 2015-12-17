@@ -46,15 +46,31 @@ class Html
 	/**
 	 * @param array $urls
 	 * @param string $active
+	 * @param bool $strict
 	 * @return string
 	 */
-	public function activate(array $urls, $active = 'active')
+	public function activate(array $urls, $active = 'active', $strict = false)
 	{
 		$requestUri = $_SERVER['REQUEST_URI'];
 
 		foreach ($urls as $url)
 		{
-			if ( $requestUri === $url ) return $active;
+			if ( $strict )
+			{
+				if ( $url === $requestUri ) return $active;
+			} else
+			{
+				if ( $this->startsWith($requestUri, $url) ) return $active;
+			}
 		}
+
+		return '';
+	}
+
+	private function startsWith($haystack, $needle)
+	{
+		$length = strlen($needle);
+
+		return (substr($haystack, 0, $length) === $needle);
 	}
 }

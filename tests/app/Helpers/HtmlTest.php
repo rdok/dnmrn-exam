@@ -55,11 +55,11 @@ class HtmlTest extends BaseTest
 	{
 		$html = new Html();
 		$expected = 'custom-active';
-		$randomUrl = 'random-url';
+		$randomUrl = '/random-url?pg=2';
 
 		$_SERVER['REQUEST_URI'] = $randomUrl;
 
-		$actual = $html->activate([$randomUrl, 'random-url-2'], $expected);
+		$actual = $html->activate(['/random-url'], $expected);
 
 		$this->assertEquals($expected, $actual);
 	}

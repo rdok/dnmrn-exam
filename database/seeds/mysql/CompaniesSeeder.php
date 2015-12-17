@@ -13,14 +13,16 @@ use Database\seeds\Seeder;
 
 class CompaniesSeeder extends Seeder
 {
-	private $popularCompanies = ['A.P. Møller-Maersk', 'Mediterranean Shipping Company', 'CMA CGM', 'American President Lines (APL)', 'Hapag-Lloyd', 'Evergreen Line', 'COSCO Container Lines (COSCON)', 'China Shipping Container Lines', 'Hanjin Shipping Company'];
+	private $popularCompanies =
+		['APM-Maersk', 'Mediterranean Shg Co', 'CMA CGM Group', 'Hapag-Lloyd', 'Evergreen Line', 'COSCO Container L.',
+			'CSCL', 'Hamburg Süd Group', 'Hanjin Shipping', 'MOL', 'OOCL', 'Yang Ming Marine Transport Corp.', 'APL'];
 
 	/**
 	 * @return mixed
 	 */
 	public function run()
 	{
-		foreach (range(1, 7) as $index)
+		foreach (range(1, 13) as $index)
 		{
 			$name = $this->faker->unique()->randomElement($this->popularCompanies);
 

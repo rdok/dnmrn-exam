@@ -30,7 +30,7 @@
                 <a href="#"> <i class="fa fa-ship"></i> <span>Vessels</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ html.activate(['/vessels']) }}">
+                    <li class="{{ html.activate(['/vessels'], 'active', true) }}">
                         <a href="{{ html.url('vessels') }}"><i class="fa fa-circle-o"></i> Index</a></li>
                     <li class="{{ html.activate(['/vessels/types']) }}">
                         <a href="{{ html.url('vessels/types') }}"><i class="fa fa-circle-o"></i> Types</a></li>
