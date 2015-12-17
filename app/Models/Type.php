@@ -24,5 +24,5 @@ class Type
 	/**
 	 * @var string
 	 */
-	public static $columnName = 'vessels_name';
+	public static $columnName = 'types_name';
 }

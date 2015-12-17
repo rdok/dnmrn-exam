@@ -1,0 +1,22 @@
+<div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+        <li><a href="#">&laquo;</a></li>
+        {% for page in 0..pagination.pages %}
+            <li><a href="{{ html.url('vessels?pg=' ~ page) }}"> {{ page }} </a></li>
+        {% endfor %}
+        <li><a href="#">&raquo;</a></li>
+
+    </ul>
+</div>
+
+{#<div class="pagination">#}
+    {#<?php $i = 0; ?>#}
+    {#<?php while ($i < $total_pages) : ?>#}
+    {#<?php $i += 1; ?>#}
+    {#<?php if ($i == $current_page) : ?>#}
+    {#<span><?php echo $i; ?></span>#}
+    {#<?php else : ?>#}
+    {#<a href="./?pg=<?php echo $i; ?>"><?php echo $i; ?></a>#}
+    {#<?php endif; ?>#}
+    {#<?php endwhile; ?>#}
+{#</div>#}

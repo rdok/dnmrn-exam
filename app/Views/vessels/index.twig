@@ -13,24 +13,25 @@
                 <tr>
                     <th>Name</th>
                     <th>IMO</th>
+                    <th>Type</th>
+                    <th>Company</th>
+                    <th>Manager</th>
                 </tr>
                 {% for vessel in vessels %}
                     <tr>
-                        <td>{{ vessel['name'] }}</td>
-                        <td>{{ vessel['imo'] }}</td>
+                        <td>{{ vessel.vessels_name }}</td>
+                        <td>{{ vessel.vessels_imo }}</td>
+                        <td>{{ vessel.types_name }}</td>
+                        <td>{{ vessel.companies_name }}</td>
+                        <td>{{ vessel.users_email }}</td>
                     </tr>
                 {% endfor %}
 
             </table>
         </div><!-- /.box-body -->
+
         <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
+            {{ paginate|raw }}
         </div>
     </div><!-- /.box -->
 

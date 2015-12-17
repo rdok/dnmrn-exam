@@ -19,6 +19,7 @@
 - [fzaninotto/Faker][fzaninotto_Faker_path] | Faker is a PHP library that generates fake data for you
 - [twig/twig][twig_twig] | Twig, the flexible, fast, and secure template language for PHP
 - [vlucas/phpdotenv][vlucas_phpdotenv_path] | Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.
+- [jasongrimes/php-paginator][jasongrimes_php-paginator] | A lightweight PHP paginator, for generating pagination controls in the style of Stack Overflow and Flickr.
 
 [bower_path]: http://bower.io
 [composer_path]: https://getcomposer.org/
@@ -27,3 +28,4 @@
 [vlucas_phpdotenv_path]: https://github.com/vlucas/phpdotenv
 [corneltek_c9s_Pux]: https://github.com/c9s/Pux/
 [twig_twig]: https://github.com/twigphp/Twig
+[jasongrimes_php-paginator]: https://github.com/jasongrimes/php-paginator

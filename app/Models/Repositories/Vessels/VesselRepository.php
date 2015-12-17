@@ -21,7 +21,14 @@ interface VesselRepository
 	public function getAll(array $fields = null);
 
 	/**
+	 * @param int $from
+	 * @param int $to
 	 * @return mixed
 	 */
-	public function getWithRelations();
+	public function getWithRelations($from = 1, $to = 10);
+
+	/**
+	 * @return mixed
+	 */
+	public function count();
 }

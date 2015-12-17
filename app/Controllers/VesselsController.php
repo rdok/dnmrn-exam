@@ -9,6 +9,7 @@ namespace App\Controllers;
 
 use App\Models\Repositories\Types\MySqlDbTypesRepository;
 use App\Models\Repositories\Vessels\MySqlDbVesselRepository;
+use JasonGrimes\Paginator;
 
 /**
  * Class VesselsController
@@ -42,11 +43,20 @@ class VesselsController extends BaseController
 	 */
 	public function index()
 	{
-		$vessels = $this->vesselsRepository->getWithRelations();
+		$currentPage = intval(isset($_GET['pg']) ? $_GET['pg'] : 1);
+		$from = $currentPage < 1 ? 0 : ($currentPage - 1) * 10;
+		$to = $currentPage + 10;
 
-		d($vessels);exit;
+		$vessels = $this->vesselsRepository->getWithRelations($from, $to);
+		$totalItems = $this->vesselsRepository->count();
 
-		$this->twig->display('vessels/index.twig', compact('vessels'));
+		$itemsPerPage = 10;
+		$urlPattern = '/vessels?pg=(:num)';
+		$paginate = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+
+		$vessels = json_decode(json_encode($vessels), false);
+
+		$this->twig->display('vessels/index.twig', compact('vessels', 'paginate'));
 	}
 
 	/**

@@ -51,4 +51,15 @@ abstract class MySqlDbRepository implements DbRepository
 		return false;
 	}
 
+	public function count()
+	{
+		$query = "SELECT COUNT(*) FROM `{$this->tableName}`";
+
+		if ( $query = DbManager::getConnection()->query($query) )
+		{
+			return intval($query->fetchColumn(0));
+		}
+
+		return false;
+	}
 }
