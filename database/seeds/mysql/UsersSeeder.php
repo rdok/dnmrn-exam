@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder
 	 */
 	public function run()
 	{
-		foreach (range(0, 13) as $index)
+		foreach (range(0, 7) as $index)
 		{
 			$firstName = $this->faker->firstName();
 			$lastName = $this->faker->lastName();

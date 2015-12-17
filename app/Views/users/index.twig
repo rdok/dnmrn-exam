@@ -17,23 +17,14 @@
                 </tr>
                 {% for user in users %}
                     <tr>
-                        <td>{{ user['f_name'] }}</td>
-                        <td>{{ user['l_name'] }}</td>
-                        <td>{{ user['email'] }}</td>
+                        <td>{{ user.users_f_name }}</td>
+                        <td>{{ user.users_l_name }}</td>
+                        <td>{{ user.users_email }}</td>
                     </tr>
                 {% endfor %}
 
             </table>
         </div><!-- /.box-body -->
-        <div class="box-footer clearfix">
-            <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
-        </div>
     </div><!-- /.box -->
 
 

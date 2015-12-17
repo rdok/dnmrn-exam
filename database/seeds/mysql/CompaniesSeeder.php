@@ -19,7 +19,7 @@ class CompaniesSeeder extends Seeder
 	 */
 	public function run()
 	{
-		foreach (range(0, 13) as $index)
+		foreach (range(0, 7) as $index)
 		{
 			$name = $this->faker->unique()->company();
 
