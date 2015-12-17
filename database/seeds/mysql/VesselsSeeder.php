@@ -9,11 +9,14 @@ namespace Database\seeds\mysql;
 
 use App\Kernel\App;
 use App\Models\Vessel;
-use Database\migrations\mysql\CreateVesselsTable;
 use Database\seeds\Seeder;
 
 class VesselsSeeder extends Seeder
 {
+	private $popularNames =
+		['USS Arizona', 'Japanese battleship Yamato', 'RMS Titanic', 'HMAV Titanic', 'HMAV',
+			'SS Andrea Doria', 'HMHS Britannic', 'USS Constitution', 'SS Baychimo', 'MS Achille Lauro', 'MS Oranje', 'HMS Victory',
+			'USS Monitor', 'German battleship Bismarck', 'HMS Ark Royal', 'Bluenose', 'Ariel'];
 
 	/**
 	 * @return mixed
@@ -22,8 +25,8 @@ class VesselsSeeder extends Seeder
 	{
 		foreach (range(0, 13) as $index)
 		{
-			$imo = $this->faker->uuid();
-			$name = $this->faker->name();
+			$imo = "IMO" . $this->faker->unique()->randomNumber(7);
+			$name = $this->faker->unique()->randomElement($this->popularNames);
 
 			$query =
 				"INSERT INTO `" . App::getDbName() . "`.`" . Vessel::$tableName . "` " .

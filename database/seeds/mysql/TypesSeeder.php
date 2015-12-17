@@ -13,15 +13,16 @@ use Database\seeds\Seeder;
 
 class TypesSeeder extends Seeder
 {
+	private $popularTypes = ['Barque', 'Barquentine', 'Caravel', 'Cog', 'Dromon', 'Flyboat', 'Galley', 'Junk', 'Longship'];
 
 	/**
 	 * @return mixed
 	 */
 	public function run()
 	{
-		foreach (range(0, 13) as $index)
+		foreach (range(1, 7) as $index)
 		{
-			$name = $this->faker->name();
+			$name = $this->faker->unique()->randomElement($this->popularTypes);
 
 			$query =
 				"INSERT INTO `" . App::getDbName() . "`.`" . Type::$tableName . "` " .
