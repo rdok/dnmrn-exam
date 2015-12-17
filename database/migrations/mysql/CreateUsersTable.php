@@ -8,6 +8,7 @@
 namespace Database\migrations\mysql;
 
 use App\Kernel\App;
+use App\Models\User;
 use Database\migrations\MySqlMigration;
 
 /**
@@ -16,30 +17,6 @@ use Database\migrations\MySqlMigration;
  */
 class CreateUsersTable extends MySqlMigration
 {
-	/**
-	 * @var string
-	 */
-	public static $tableName = 'users';
-	/**
-	 * @var string
-	 */
-	public static $columnFirstName = 'f_name';
-	/**
-	 * @var string
-	 */
-	public static $columnLastName = 'l_name';
-	/**
-	 * @var string
-	 */
-	public static $columnEmail = 'email';
-	/**
-	 * @var string
-	 */
-	public static $columnPassword = 'password';
-	/**
-	 * @var string
-	 */
-	public static $columnPrimaryKey = 'id';
 
 	/**
 	 * Run the migrations
@@ -48,18 +25,18 @@ class CreateUsersTable extends MySqlMigration
 	public function up()
 	{
 		$query =
-			"CREATE TABLE `" . App::getDbName() . "`.`" . self::$tableName . "` (" .
-			"`" . self::$columnPrimaryKey . "` INT NOT NULL AUTO_INCREMENT," .
-			"`" . self::$columnFirstName . "` VARCHAR(45) NULL," .
-			"`" . self::$columnLastName . "` VARCHAR(45) NULL," .
-			"`" . self::$columnEmail . "` VARCHAR(255) NOT NULL," .
-			"`" . self::$columnPassword . "` VARCHAR(60) NOT NULL," .
-			"PRIMARY KEY (`" . self::$columnPrimaryKey . "`) ," .
-			"UNIQUE INDEX `" . self::$columnEmail . "_UNIQUE` (`" . self::$columnEmail . "` ASC));";
+			"CREATE TABLE `" . App::getDbName() . "`.`" . User::$tableName . "` (" .
+			"`" . User::$columnPrimaryKey . "` INT NOT NULL AUTO_INCREMENT, " .
+			"`" . User::$columnFirstName . "` VARCHAR(45) NULL, " .
+			"`" . User::$columnLastName . "` VARCHAR(45) NULL, " .
+			"`" . User::$columnEmail . "` VARCHAR(255) NOT NULL, " .
+			"`" . User::$columnPassword . "` VARCHAR(60) NOT NULL, " .
+			"PRIMARY KEY (`" . User::$columnPrimaryKey . "`), " .
+			"UNIQUE INDEX `" . User::$columnEmail . "_UNIQUE` (`" . User::$columnEmail . "` ASC));";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
-		echo "Table '" . self::$tableName . "' created.\n";
+		echo "Table '" . User::$tableName . "' created.\n";
 	}
 
 	/**
@@ -67,6 +44,6 @@ class CreateUsersTable extends MySqlMigration
 	 */
 	public function getTableName()
 	{
-		return self::$tableName;
+		return User::$tableName;
 	}
 }

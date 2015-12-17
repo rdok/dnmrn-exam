@@ -44,7 +44,7 @@ class VesselsController extends BaseController
 	{
 		$vessels = $this->vesselsRepository->getWithRelations();
 
-		d($vessels);
+		d($vessels);exit;
 
 		$this->twig->display('vessels/index.twig', compact('vessels'));
 	}

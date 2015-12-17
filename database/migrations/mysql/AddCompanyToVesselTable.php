@@ -31,7 +31,7 @@ class AddCompanyToVesselTable extends MySqlMigration
 		$query =
 			"ALTER TABLE `" . App::getDbName() . "`.`" . Vessel::$tableName . "`" .
 			"ADD CONSTRAINT `" . Vessel::$foreignCompaniesVessels . "`" .
-			"FOREIGN KEY (`" . Vessel::$columnForeignKey . "`)" .
+			"FOREIGN KEY (`" . Vessel::$foreignTypesVessels . "`)" .
 			"REFERENCES `" . App::getDbName() . "`.`" . Company::$tableName . "`) " .
 			"ON DELETE RESTRICT ON UPDATE CASCADE;";
 

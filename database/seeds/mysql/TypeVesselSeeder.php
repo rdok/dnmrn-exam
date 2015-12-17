@@ -10,7 +10,9 @@ namespace Database\seeds\mysql;
 use App\Kernel\App;
 use App\Models\Company;
 use App\Models\Repositories\Companies\MySqlDbCompaniesRepository;
+use App\Models\Repositories\Types\MySqlDbTypesRepository;
 use App\Models\Repositories\Vessels\MySqlDbVesselRepository;
+use App\Models\Type;
 use App\Models\Vessel;
 use Database\seeds\Seeder;
 use PDO;
@@ -19,12 +21,12 @@ use PDO;
  * Class CompanyVesselSeeder
  * @package Database\seeds\mysql
  */
-class CompanyVesselSeeder extends Seeder
+class TypeVesselSeeder extends Seeder
 {
 	/**
 	 * @var MySqlDbCompaniesRepository
 	 */
-	protected $companyRepository;
+	protected $typeRepository;
 	/**
 	 * @var MySqlDbVesselRepository
 	 */
@@ -37,7 +39,7 @@ class CompanyVesselSeeder extends Seeder
 	{
 		parent::__construct();
 
-		$this->companyRepository = new MySqlDbCompaniesRepository();
+		$this->typeRepository = new MySqlDbTypesRepository();
 		$this->vesselRepository = new MySqlDbVesselRepository();
 	}
 
@@ -46,28 +48,28 @@ class CompanyVesselSeeder extends Seeder
 	 */
 	public function run()
 	{
-		$companyIds = $this->companyRepository->getAll([Company::$columnPrimaryKey]);
+		$typeIds = $this->typeRepository->getAll([Type::$columnPrimaryKey]);
 		$vesselIds = $this->vesselRepository->getAll([Vessel::$columnPrimaryKey]);
 
 		foreach (range(0, 7) as $index)
 		{
-			$companyId = $this->faker->randomElement($companyIds)[Company::$columnPrimaryKey];
-			$vesselId = $this->faker->randomElement($vesselIds)[Vessel::$columnPrimaryKey];
+			$typeId = $this->faker->randomElement($typeIds)[ Type::$columnPrimaryKey ];
+			$vesselId = $this->faker->randomElement($vesselIds)[ Vessel::$columnPrimaryKey ];
 
 			$query =
 				"UPDATE `" . App::getDbName() . "`.`" . Vessel::$tableName . "` " .
-				"SET `" . Vessel::$columnCompanyId . "`= :company_id " .
+				"SET `" . Vessel::$columnTypeId . "`= :type_id " .
 				"WHERE `" . Vessel::$columnPrimaryKey . "` = :vessel_id";
 
 			$query = $this->db->getConnection()->prepare($query);
 
-			$query->bindParam(':company_id', $companyId, PDO::PARAM_INT);
+			$query->bindParam(':type_id', $typeId, PDO::PARAM_INT);
 
 			$query->bindParam(':vessel_id', $vesselId, PDO::PARAM_INT);
 
 			$query->execute();
 		}
 
-		echo "Seed for '" . Company::$tableName . "' and '" . Vessel::$tableName . "' tables complete.\n";
+		echo "Seed for '" . Vessel::$tableName . "' and '" . Type::$tableName . "' tables complete.\n";
 	}
 }

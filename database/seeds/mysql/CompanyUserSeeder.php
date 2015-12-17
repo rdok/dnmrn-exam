@@ -10,8 +10,9 @@ namespace Database\seeds\mysql;
 use App\Kernel\App;
 use App\Models\Company;
 use App\Models\Repositories\Companies\MySqlDbCompaniesRepository;
+use App\Models\Repositories\Users\MySqlDbUsersRepository;
 use App\Models\Repositories\Vessels\MySqlDbVesselRepository;
-use App\Models\Vessel;
+use App\Models\User;
 use Database\seeds\Seeder;
 use PDO;
 
@@ -19,7 +20,7 @@ use PDO;
  * Class CompanyVesselSeeder
  * @package Database\seeds\mysql
  */
-class CompanyVesselSeeder extends Seeder
+class CompanyUserSeeder extends Seeder
 {
 	/**
 	 * @var MySqlDbCompaniesRepository
@@ -28,7 +29,7 @@ class CompanyVesselSeeder extends Seeder
 	/**
 	 * @var MySqlDbVesselRepository
 	 */
-	protected $vesselRepository;
+	protected $userRepository;
 
 	/**
 	 * CompanyVesselSeeder constructor.
@@ -38,7 +39,8 @@ class CompanyVesselSeeder extends Seeder
 		parent::__construct();
 
 		$this->companyRepository = new MySqlDbCompaniesRepository();
-		$this->vesselRepository = new MySqlDbVesselRepository();
+
+		$this->userRepository = new MySqlDbUsersRepository();
 	}
 
 	/**
@@ -47,27 +49,27 @@ class CompanyVesselSeeder extends Seeder
 	public function run()
 	{
 		$companyIds = $this->companyRepository->getAll([Company::$columnPrimaryKey]);
-		$vesselIds = $this->vesselRepository->getAll([Vessel::$columnPrimaryKey]);
+		$userIds = $this->userRepository->getAll([User::$columnPrimaryKey]);
 
 		foreach (range(0, 7) as $index)
 		{
-			$companyId = $this->faker->randomElement($companyIds)[Company::$columnPrimaryKey];
-			$vesselId = $this->faker->randomElement($vesselIds)[Vessel::$columnPrimaryKey];
+			$companyId = $this->faker->randomElement($companyIds)[ Company::$columnPrimaryKey ];
+			$userId = $this->faker->randomElement($userIds)[ User::$columnPrimaryKey ];
 
 			$query =
-				"UPDATE `" . App::getDbName() . "`.`" . Vessel::$tableName . "` " .
-				"SET `" . Vessel::$columnCompanyId . "`= :company_id " .
-				"WHERE `" . Vessel::$columnPrimaryKey . "` = :vessel_id";
+				"UPDATE `" . App::getDbName() . "`.`" . Company::$tableName . "` " .
+				"SET `" . Company::$columnUserId . "`= :user_id " .
+				"WHERE `" . Company::$columnPrimaryKey . "` = :company_id";
 
 			$query = $this->db->getConnection()->prepare($query);
 
 			$query->bindParam(':company_id', $companyId, PDO::PARAM_INT);
 
-			$query->bindParam(':vessel_id', $vesselId, PDO::PARAM_INT);
+			$query->bindParam(':user_id', $userId, PDO::PARAM_INT);
 
 			$query->execute();
 		}
 
-		echo "Seed for '" . Company::$tableName . "' and '" . Vessel::$tableName . "' tables complete.\n";
+		echo "Seed for '" . Company::$tableName . "' and '" . User::$tableName . "' tables complete.\n";
 	}
 }

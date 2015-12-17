@@ -8,6 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
+use App\Models\User;
 use Database\migrations\mysql\CreateUsersTable;
 use Database\seeds\Seeder;
 
@@ -27,13 +28,13 @@ class UsersSeeder extends Seeder
 			$password = password_hash($this->faker->password(), PASSWORD_DEFAULT);
 
 			$query =
-				"INSERT INTO `" . App::getDbName() . "`.`" . CreateUsersTable::$tableName . "` " .
-				"(`" . CreateUsersTable::$columnFirstName . "`, `" . CreateUsersTable::$columnLastName . "`," .
-				"`" . CreateUsersTable::$columnEmail . "`, `" . CreateUsersTable::$columnPassword . "`) " .
+				"INSERT INTO `" . App::getDbName() . "`.`" . User::$tableName . "` " .
+				"(`" . User::$columnFirstName . "`, `" . User::$columnLastName . "`," .
+				"`" . User::$columnEmail . "`, `" . User::$columnPassword . "`) " .
 				"VALUES ('$firstName', '$lastName', '$email', '$password')";
 
 			$this->db->getConnection()->query($query);
 		}
-		echo "Seed for '" . CreateUsersTable::$tableName . "' table complete.\n";
+		echo "Seed for '" . User::$tableName . "' table complete.\n";
 	}
 }

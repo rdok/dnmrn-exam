@@ -6,9 +6,12 @@
  */
 
 namespace Database\seeds;
+
 use Database\seeds\mysql\CompaniesSeeder;
+use Database\seeds\mysql\CompanyUserSeeder;
 use Database\seeds\mysql\CompanyVesselSeeder;
 use Database\seeds\mysql\TypesSeeder;
+use Database\seeds\mysql\TypeVesselSeeder;
 use Database\seeds\mysql\UsersSeeder;
 use Database\seeds\mysql\VesselsSeeder;
 
@@ -22,6 +25,14 @@ class MySqlDatabaseSeeder extends Seeder
 	 * @var CompanyVesselSeeder
 	 */
 	protected $companyVesselSeeder;
+	/**
+	 * @var TypeVesselSeeder
+	 */
+	protected $typeVesselSeeder;
+	/**
+	 * @var CompanyUserSeeder
+	 */
+	protected $companyUserSeeder;
 	/**
 	 * @var UsersSeeder
 	 */
@@ -51,6 +62,8 @@ class MySqlDatabaseSeeder extends Seeder
 		$this->typesSeeder = new TypesSeeder();
 		$this->companiesSeeder = new CompaniesSeeder();
 		$this->companyVesselSeeder = new CompanyVesselSeeder();
+		$this->typeVesselSeeder = new TypeVesselSeeder();
+		$this->companyUserSeeder = new CompanyUserSeeder();
 	}
 
 	/**
@@ -63,5 +76,7 @@ class MySqlDatabaseSeeder extends Seeder
 		$this->typesSeeder->run();
 		$this->companiesSeeder->run();
 		$this->companyVesselSeeder->run();
+		$this->typeVesselSeeder->run();
+		$this->companyUserSeeder->run();
 	}
 }
