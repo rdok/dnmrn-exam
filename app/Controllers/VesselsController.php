@@ -8,6 +8,7 @@
 namespace App\Controllers;
 
 use App\Models\Repositories\Types\MySqlDbTypesRepository;
+use App\Models\Repositories\Users\MySqlDbUsersRepository;
 use App\Models\Repositories\Vessels\MySqlDbVesselRepository;
 use JasonGrimes\Paginator;
 
@@ -25,6 +26,10 @@ class VesselsController extends BaseController
 	 * @var MySqlDbTypesRepository
 	 */
 	protected $typesRepository;
+	/**
+	 * @var MySqlDbUsersRepository
+	 */
+	protected $userRepository;
 
 	/**
 	 * VesselsController constructor.
@@ -34,8 +39,8 @@ class VesselsController extends BaseController
 		parent::__construct();
 
 		$this->vesselsRepository = new MySqlDbVesselRepository();
-
 		$this->typesRepository = new MySqlDbTypesRepository();
+		$this->userRepository = new MySqlDbUsersRepository();
 	}
 
 	/**
@@ -67,5 +72,16 @@ class VesselsController extends BaseController
 		$types = $this->typesRepository->getAll();
 
 		$this->twig->display('vessels/types/index.twig', compact('types'));
+	}
+
+	/**
+	 *
+	 */
+	public function user($id)
+	{
+		$vessels = $this->vesselsRepository->getByUserId($id);
+		$user = $this->userRepository->getById($id);
+
+		$this->twig->display('vessels/users/index.twig', compact('vessels', 'user'));
 	}
 }

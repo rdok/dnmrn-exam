@@ -22,7 +22,7 @@ class CompaniesSeeder extends Seeder
 	 */
 	public function run()
 	{
-		foreach (range(1, 13) as $index)
+		foreach (range(1, 3) as $index)
 		{
 			$name = $this->faker->unique()->randomElement($this->popularCompanies);
 

@@ -14,12 +14,16 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>Company Managed</th>
+                    <th>Vessels Manged</th>
                 </tr>
                 {% for user in users %}
                     <tr>
                         <td>{{ user.users_f_name }}</td>
                         <td>{{ user.users_l_name }}</td>
                         <td>{{ user.users_email }}</td>
+                        <td>{{ user.companies_name }}</td>
+                        <td><a class="btn btn-block btn-xs btn-primary btn-flat" href="{{ 'vessels/users/' ~ user.id_users }}">View</a></td>
                     </tr>
                 {% endfor %}
 

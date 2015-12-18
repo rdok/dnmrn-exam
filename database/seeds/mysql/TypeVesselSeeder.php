@@ -51,10 +51,11 @@ class TypeVesselSeeder extends Seeder
 		$typeIds = $this->typeRepository->getAll([Type::$columnPrimaryKey]);
 		$vesselIds = $this->vesselRepository->getAll([Vessel::$columnPrimaryKey]);
 
-		foreach (range(0, 7) as $index)
+		foreach ($vesselIds as $vesselId)
 		{
+			$vesselId = $vesselId[Vessel::$columnPrimaryKey];
+
 			$typeId = $this->faker->randomElement($typeIds)[ Type::$columnPrimaryKey ];
-			$vesselId = $this->faker->randomElement($vesselIds)[ Vessel::$columnPrimaryKey ];
 
 			$query =
 				"UPDATE `" . App::getDbName() . "`.`" . Vessel::$tableName . "` " .

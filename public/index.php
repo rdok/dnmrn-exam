@@ -14,9 +14,13 @@ $baseUrl = getenv('BASE_URL');
 $mux = new \Pux\Mux;
 
 $mux->get($baseUrl, ['App\Controllers\HomeController', 'home']);
+
 $mux->get($baseUrl . "vessels(?pg=:id)", ['App\Controllers\VesselsController', 'index']);
 $mux->get($baseUrl . "vessels/types", ['App\Controllers\VesselsController', 'types']);
+$mux->get($baseUrl . "vessels/users/:id", ['App\Controllers\VesselsController', 'user']);
+
 $mux->get($baseUrl . "companies(?pg=:id)", ['App\Controllers\CompaniesController', 'index']);
+
 $mux->get($baseUrl . "users", ['App\Controllers\UsersController', 'index']);
 
 $route = $mux->dispatch($_SERVER['REQUEST_URI']);

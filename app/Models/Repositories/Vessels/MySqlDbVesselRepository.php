@@ -50,4 +50,28 @@ class MySqlDbVesselRepository extends MySqlDbRepository implements VesselReposit
 
 		return false;
 	}
+
+	/**
+	 * @param $userId
+	 * @return mixed
+	 */
+	public function getByUserId($userId)
+	{
+
+		$query =
+			"SELECT * FROM `" . App::getDbName() . "`.`" . Vessel::$tableName . "` " .
+			"INNER JOIN `" . Company::$tableName . "`  ON `" . Company::$tableName . "`.`" . Company::$columnUserId . "` = :user_id " .
+			"INNER JOIN `" . Type::$tableName . "`  ON `" . Vessel::$tableName . "`.`" . Vessel::$columnTypeId . "` = `" . Type::$tableName . "`.`" . Type::$columnPrimaryKey . "`" .
+			"AND `" . Company::$tableName . "`.`" . Company::$columnPrimaryKey . "` = `" . Vessel::$tableName . "`.`" . Vessel::$columnCompanyId . "`";
+
+		$query = DbManager::getConnection()->prepare($query);
+		$query->bindParam(':user_id', $userId, PDO::PARAM_STR);
+
+		if ( $query->execute() )
+		{
+			return $query->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		return false;
+	}
 }

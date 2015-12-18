@@ -22,7 +22,7 @@ class UsersController extends BaseController
 
 	public function index()
 	{
-		$users = $this->usersRepository->getAll();
+		$users = $this->usersRepository->getWithRelations();
 
 		$this->twig->display('users/index.twig', compact('users'));
 	}

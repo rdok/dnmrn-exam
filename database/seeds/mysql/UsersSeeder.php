@@ -9,7 +9,6 @@ namespace Database\seeds\mysql;
 
 use App\Kernel\App;
 use App\Models\User;
-use Database\migrations\mysql\CreateUsersTable;
 use Database\seeds\Seeder;
 
 class UsersSeeder extends Seeder
@@ -20,7 +19,7 @@ class UsersSeeder extends Seeder
 	 */
 	public function run()
 	{
-		foreach (range(1, 7) as $index)
+		foreach (range(0, 3) as $index)
 		{
 			$firstName = $this->faker->firstName();
 			$lastName = $this->faker->lastName();

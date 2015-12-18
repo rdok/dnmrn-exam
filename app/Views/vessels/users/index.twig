@@ -1,0 +1,32 @@
+{% extends "layouts/master.twig" %}
+
+{% block title %}Vessels{% endblock %}
+
+{% block content %}
+
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Managed by {{ user.users_email }} | Company {{ user.companies_name }}</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>IMO</th>
+                    <th>Type</th>
+                </tr>
+                {% for vessel in vessels %}
+                    <tr>
+                        <td>{{ vessel.vessels_name }}</td>
+                        <td>{{ vessel.vessels_imo }}</td>
+                        <td>{{ vessel.types_name }}</td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div><!-- /.box-body -->
+
+    </div><!-- /.box -->
+
+
+{% endblock %}

@@ -51,9 +51,10 @@ class CompanyUserSeeder extends Seeder
 		$companyIds = $this->companyRepository->getAll([Company::$columnPrimaryKey]);
 		$userIds = $this->userRepository->getAll([User::$columnPrimaryKey]);
 
-		foreach (range(0, 7) as $index)
+		foreach (range(0, 13) as $index)
 		{
-			$companyId = $this->faker->randomElement($companyIds)[ Company::$columnPrimaryKey ];
+			$companyId = $this->faker->randomElement($companyIds);
+			$companyId = $companyId[ Company::$columnPrimaryKey ];
 			$userId = $this->faker->randomElement($userIds)[ User::$columnPrimaryKey ];
 
 			$query =

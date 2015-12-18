@@ -31,4 +31,10 @@ interface VesselRepository
 	 * @return mixed
 	 */
 	public function count();
+
+	/**
+	 * @param $userId
+	 * @return mixed
+	 */
+	public function getByUserId($userId);
 }

@@ -7,6 +7,10 @@
 
 namespace App\Models\Repositories\Types;
 
+/**
+ * Interface TypesRepository
+ * @package App\Models\Repositories\Types
+ */
 interface TypesRepository
 {
 

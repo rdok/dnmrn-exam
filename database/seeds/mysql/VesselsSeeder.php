@@ -23,7 +23,7 @@ class VesselsSeeder extends Seeder
 	 */
 	public function run()
 	{
-		foreach (range(0, 13) as $index)
+		foreach (range(0, sizeof($this->popularNames) - 1) as $index)
 		{
 			$imo = "IMO" . $this->faker->unique()->randomNumber(7);
 			$name = $this->faker->unique()->randomElement($this->popularNames);

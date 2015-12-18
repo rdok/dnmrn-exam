@@ -49,7 +49,7 @@ class CompanyVesselSeeder extends Seeder
 		$companyIds = $this->companyRepository->getAll([Company::$columnPrimaryKey]);
 		$vesselIds = $this->vesselRepository->getAll([Vessel::$columnPrimaryKey]);
 
-		foreach (range(0, 7) as $index)
+		foreach (range(0, 33) as $index)
 		{
 			$companyId = $this->faker->randomElement($companyIds)[Company::$columnPrimaryKey];
 			$vesselId = $this->faker->randomElement($vesselIds)[Vessel::$columnPrimaryKey];

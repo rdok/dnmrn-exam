@@ -19,5 +19,4 @@ class MySqlDbTypesRepository extends MySqlDbRepository implements TypesRepositor
 	{
 		parent::__construct(Type::$tableName);
 	}
-
 }

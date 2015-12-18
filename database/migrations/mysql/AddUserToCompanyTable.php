@@ -24,7 +24,7 @@ class AddUserToCompanyTable extends MySqlMigration
 		$query =
 			"ALTER TABLE `" . App::getDbName() . "`.`" . Company::$tableName . "` " .
 			"ADD COLUMN `" . Company::$columnUserId . "` INT NULL, " .
-			"ADD INDEX `" . Company::$indexCompaniesUsers . "` (`" . Company::$columnUserId . "` ASC);";
+			"ADD UNIQUE INDEX `" . Company::$indexCompaniesUsers . "` (`" . Company::$columnUserId . "` ASC);";
 
 		$this->db->getConnection()->prepare($query)->execute();
 
