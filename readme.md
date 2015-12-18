@@ -2,7 +2,7 @@
 ### Software required on Web Server
 - [Bower][bower_path] | Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.
 - [Composer][composer_path] | Dependency Manager for PHP
-- [Git][git_path] | Pux is a fast PHP Router and includes out-of-box controller tools
+- [Git][git_path] | Git (/ɡɪt/) is a widely used version control system for software development.
 
 ### Get Source Code
 - `git clone git@github.com:rdok/dnmrn-exam.git` | Clone the project into your web server
@@ -11,11 +11,18 @@
 ### Add credentials
 - Copy .env.example to .env and replace variables as needed.
 
+### Set Up Database
+- `php commands/mysql/up` Creates tables
+- `php commands/mysql/down` Drops tables
+- `php commands/mysql/provision` Drops, and creates tables
+- `php commands/mysql/seed` Drops, Creates, and fills tables with seed data. 
+
+
 ### Credits
 - [Bower][bower_path] | Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.
 - [c9s/Pux][corneltek_c9s_Pux] | Pux is a fast PHP Router and includes out-of-box controller tools
 - [Composer][composer_path] | Dependency Manager for PHP
-- [Git][git_path] | Pux is a fast PHP Router and includes out-of-box controller tools
+- [Git][git_path] | Git (/ɡɪt/) is a widely used version control system for software development.
 - [fzaninotto/Faker][fzaninotto_Faker_path] | Faker is a PHP library that generates fake data for you
 - [twig/twig][twig_twig] | Twig, the flexible, fast, and secure template language for PHP
 - [vlucas/phpdotenv][vlucas_phpdotenv_path] | Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.
