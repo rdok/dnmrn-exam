@@ -8,6 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
+use App\Kernel\DbManager;
 use App\Models\Company;
 use App\Models\Repositories\Companies\MySqlDbCompaniesRepository;
 use App\Models\Repositories\Vessels\MySqlDbVesselRepository;
@@ -59,7 +60,7 @@ class CompanyVesselSeeder extends Seeder
 				"SET `" . Vessel::$columnCompanyId . "`= :company_id " .
 				"WHERE `" . Vessel::$columnPrimaryKey . "` = :vessel_id";
 
-			$query = $this->db->getConnection()->prepare($query);
+			$query = DbManager::getConnection()->prepare($query);
 
 			$query->bindParam(':company_id', $companyId, PDO::PARAM_INT);
 

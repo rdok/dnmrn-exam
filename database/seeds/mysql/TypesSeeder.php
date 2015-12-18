@@ -8,6 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
+use App\Kernel\DbManager;
 use App\Models\Type;
 use Database\seeds\Seeder;
 
@@ -29,7 +30,7 @@ class TypesSeeder extends Seeder
 				"(`" . Type::$columnName . "`) " .
 				"VALUES ('$name')";
 
-			$this->db->getConnection()->query($query);
+			$query = DbManager::getConnection()->query($query);
 		}
 		echo "Seed for '" . Type::$tableName . "' table complete.\n";
 	}

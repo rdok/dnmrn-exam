@@ -8,6 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
+use App\Kernel\DbManager;
 use App\Models\User;
 use Database\seeds\Seeder;
 
@@ -32,7 +33,7 @@ class UsersSeeder extends Seeder
 				"`" . User::$columnEmail . "`, `" . User::$columnPassword . "`) " .
 				"VALUES ('$firstName', '$lastName', '$email', '$password')";
 
-			$this->db->getConnection()->query($query);
+			$query = DbManager::getConnection()->query($query);
 		}
 		echo "Seed for '" . User::$tableName . "' table complete.\n";
 	}

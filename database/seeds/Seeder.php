@@ -30,8 +30,6 @@ abstract class Seeder
 	 */
 	public function __construct()
 	{
-		$this->db = new DbManager();
-
 		$this->faker = Factory::create();
 	}
 

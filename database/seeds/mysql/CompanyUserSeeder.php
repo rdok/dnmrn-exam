@@ -8,6 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
+use App\Kernel\DbManager;
 use App\Models\Company;
 use App\Models\Repositories\Companies\MySqlDbCompaniesRepository;
 use App\Models\Repositories\Users\MySqlDbUsersRepository;
@@ -62,7 +63,7 @@ class CompanyUserSeeder extends Seeder
 				"SET `" . Company::$columnUserId . "`= :user_id " .
 				"WHERE `" . Company::$columnPrimaryKey . "` = :company_id";
 
-			$query = $this->db->getConnection()->prepare($query);
+			$query = DbManager::getConnection()->prepare($query);
 
 			$query->bindParam(':company_id', $companyId, PDO::PARAM_INT);
 

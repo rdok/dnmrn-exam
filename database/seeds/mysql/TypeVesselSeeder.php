@@ -8,7 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
-use App\Models\Company;
+use App\Kernel\DbManager;
 use App\Models\Repositories\Companies\MySqlDbCompaniesRepository;
 use App\Models\Repositories\Types\MySqlDbTypesRepository;
 use App\Models\Repositories\Vessels\MySqlDbVesselRepository;
@@ -53,7 +53,7 @@ class TypeVesselSeeder extends Seeder
 
 		foreach ($vesselIds as $vesselId)
 		{
-			$vesselId = $vesselId[Vessel::$columnPrimaryKey];
+			$vesselId = $vesselId[ Vessel::$columnPrimaryKey ];
 
 			$typeId = $this->faker->randomElement($typeIds)[ Type::$columnPrimaryKey ];
 
@@ -62,7 +62,7 @@ class TypeVesselSeeder extends Seeder
 				"SET `" . Vessel::$columnTypeId . "`= :type_id " .
 				"WHERE `" . Vessel::$columnPrimaryKey . "` = :vessel_id";
 
-			$query = $this->db->getConnection()->prepare($query);
+			$query = DbManager::getConnection()->prepare($query);
 
 			$query->bindParam(':type_id', $typeId, PDO::PARAM_INT);
 

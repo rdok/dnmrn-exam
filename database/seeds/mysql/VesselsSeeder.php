@@ -8,6 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
+use App\Kernel\DbManager;
 use App\Models\Vessel;
 use Database\seeds\Seeder;
 
@@ -33,7 +34,7 @@ class VesselsSeeder extends Seeder
 				"(`" . Vessel::$columnImo . "`, `" . Vessel::$columnName . "`) " .
 				"VALUES ('$imo', '$name')";
 
-			$this->db->getConnection()->query($query);
+			$query = DbManager::getConnection()->query($query);
 		}
 		echo "Seed for '" . Vessel::$tableName . "' table complete.\n";
 	}

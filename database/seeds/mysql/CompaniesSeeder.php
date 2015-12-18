@@ -8,6 +8,7 @@
 namespace Database\seeds\mysql;
 
 use App\Kernel\App;
+use App\Kernel\DbManager;
 use App\Models\Company;
 use Database\seeds\Seeder;
 
@@ -31,7 +32,7 @@ class CompaniesSeeder extends Seeder
 				"(`" . Company::$columnName . "`) " .
 				"VALUES ('$name')";
 
-			$this->db->getConnection()->query($query);
+			DbManager::getConnection()->query($query);
 		}
 
 		echo "Seed for '" . Company::$tableName . "' table complete.\n";
